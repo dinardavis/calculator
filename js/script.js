@@ -1,9 +1,13 @@
 let display = document.querySelector('.number-display');
 const numberKeys = document.querySelectorAll('.number');
+const operatorKeys = document.querySelectorAll('.operator');
 const equalsBtn = document.querySelector('.equals');
+const clearBtn = document.querySelector('.clear-btn');
 const negPosBtn = document.querySelector('.neg-pos-btn');
 const percentBtn = document.querySelector('.percent-btn');
 let displayValue = 0;
+let runningTotal = 0;
+let calcCurrentStatus = [];
 
 
 function add(num1, num2) {
@@ -51,11 +55,16 @@ function convertToPercentage(num){
   display.innerText = displayValue;
 }
 
-
-
 numberKeys.forEach(numberKey => numberKey.addEventListener('click', updatedDisplay));
 
-negPosBtn.addEventListener('click', posNegNumberToggle);
+clearBtn.addEventListener('click', () => {
+  displayValue = 0;
+  display.innerText = '0';
+});
+
 percentBtn.addEventListener('click', () => {
   convertToPercentage(displayValue);
 });
+
+negPosBtn.addEventListener('click', posNegNumberToggle);
+
